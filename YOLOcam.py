@@ -9,13 +9,13 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 url = 'rtsp://admin:Admin001@gold33.iptime.org:557/2'  # 선택한 URL
 cap = cv2.VideoCapture(url)
 if not cap.isOpened():
-    print("Error: Unable to access the webcam.")
+    print("Error: 웹캠 연결에 실패했습니다.")
     exit()
 
 while True:
     ret, frame = cap.read()
     if not ret:
-        print("Error: Unable to read frame from webcam.")
+        print("Error: 웹캠에서 영상을 읽어올 수 없습니다.")
         break
 
     # Perform detection
@@ -30,7 +30,7 @@ while True:
         cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
     # Display the frame
-    cv2.imshow("YOLOv5 Object Detection", frame)
+    cv2.imshow("YOLOv5 객체 감지", frame)
 
     # Break loop on 'q' key press
     if cv2.waitKey(1) & 0xFF == ord('q'):
